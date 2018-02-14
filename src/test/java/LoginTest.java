@@ -21,7 +21,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void delete() {
-        loginPage.loginWith(" ", " ");
+        loginPage.loginWith("  ", " ");
         loginPage.deleteMails();
     }
 }
