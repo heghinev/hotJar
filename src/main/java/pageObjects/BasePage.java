@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 public abstract class BasePage<T extends LoadableComponent<T>> extends LoadableComponent<T> {
     private static Logger log = Logger.getLogger(Log.class.getName());
     protected WebDriver driver;
-    public static final String BASE_URL = System.getProperty("selenium.url", "https://gmail.com");
+    public static final String BASE_URL = System.getProperty("selenium.url", "https://insights.hotjar.com/login");
 
     public BasePage(WebDriver webdriver) {
         this.driver = webdriver;

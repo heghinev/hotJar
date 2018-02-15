@@ -20,9 +20,9 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void delete() {
-        loginPage.loginWith(" ", " ");
-        loginPage.deleteMails();
+    public void getUrls() {
+        loginPage.loginWith("helenvanetsyan@gmail.com", "Pumpumik123!");
+        loginPage.getTd();
     }
 }
 

@@ -1,24 +1,25 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import setup.WaitHelper;
 
+import java.util.List;
+
 import static setup.DriverSetup.getDriver;
 
 public class LoginPage extends BasePage {
-    @FindBy(id = "identifierId")
+    @FindBy(id = "email")
     private WebElement emailLocator;
-    @FindBy(xpath = "//span[@class='RveJvd snByac']")
-    private WebElement nextLocator;
-    @FindBy(css = "input[name='password']")
+    @FindBy(css = "input[type = password]")
     private WebElement passwordLocator;
-    @FindBy(xpath = "//*[@id=\":30\"]/div[1]/span")
-    private WebElement checkboxLocator;
-    @FindBy(xpath = "//*[@id=\":5\"]/div/div[1]/div[1]/div/div/div[2]/div[3]/div")
-    private WebElement deleteLocator;
-    @FindBy(xpath = "//*[@id=\":5\"]/div/div[1]/div[1]/div/div/div[4]/div/div/div")
-    private WebElement refreshLocator;
+    @FindBy(css = "button[type = submit]")
+    private WebElement submitLocator;
+    @FindBy(xpath = "//*[@id=\"sidebar\"]/div[1]/ul/li[3]/a[2]")
+    private WebElement recordingsLocator;
+
 
 
     public LoginPage() {
@@ -30,31 +31,62 @@ public class LoginPage extends BasePage {
         return BASE_URL;
     }
 
-    public String getURL() {
-        return driver.getCurrentUrl();
-    }
-
     public void loginWith(String email, String password) {
         type(emailLocator, email);
-        click(nextLocator);
-        WaitHelper.getWait()
-                .waitForElementToBeVisible(passwordLocator);
         type(passwordLocator, password);
-        click(nextLocator);
+        click(submitLocator);
+        WaitHelper.getWait().waitForElementToBeClickable(recordingsLocator);
+        click(recordingsLocator);
     }
 
-    public void deleteMails(){
-        for(int i = 0; i < 100; i++) {
-            WaitHelper.getWait()
-                    .waitForElementToBeVisible(checkboxLocator);
-            click(checkboxLocator);
-            WaitHelper.getWait()
-                    .waitForElementToBeVisible(deleteLocator);
-            click(deleteLocator);
-            WaitHelper.getWait()
-                    .waitForElementToBeVisible(refreshLocator);
-            click(refreshLocator);
+
+    public List<WebElement> getTROptions(){
+        return driver.findElements(By.className("new"));
+    }
+
+    public int i = 0;
+    public void getTd(){
+        List<WebElement> options = getTROptions();
+        for (WebElement tdOption:options){
+            if(i<101){
+                String s = tdOption.toString();
+                System.out.println(s);
+            }i++;
+
         }
     }
+
+   /* public String getSelectedOption(){
+        List<WebElement> options = getTROptions();
+        for (WebElement option:options){
+            if (option.isSelected()){
+                return option.getText();
+            }
+        }
+        return null;
+    }*/
+/*
+
+    public String staticUrl = "https://insights.hotjar.com/p?site=216793&recording=";
+    public String uniqueCode = "";
+    public String finalUrl = staticUrl + uniqueCode;
+*/
+
+    /*public String getFinalUrl(){
+        //Class<? extends JavascriptExecutor> s = ((JavascriptExecutor) driver).getClass();
+       String htmlText = driver.
+
+        *//*for(int codeCount = 0; codeCount < 1; codeCount++){
+            int indexOfCode = htmlText.indexOf("recordingRow-");
+            uniqueCode = htmlText.substring(indexOfCode+1, indexOfCode + 11);
+            System.out.println(uniqueCode);
+            htmlText = htmlText.substring(indexOfCode+10);
+            System.out.println(finalUrl);
+        }*//*
+        System.out.println(s);
+        return String.valueOf(s);
+
+    }
+*/
 
 }
