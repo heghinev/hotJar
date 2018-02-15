@@ -1,7 +1,6 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import setup.WaitHelper;
@@ -45,48 +44,36 @@ public class LoginPage extends BasePage {
     }
 
     public int i = 0;
+    public String trId;
+
     public void getTd(){
         List<WebElement> options = getTROptions();
         for (WebElement tdOption:options){
             if(i<101){
-                String s = tdOption.toString();
-                System.out.println(s);
+                trId = trId + tdOption.getAttribute("id");
             }i++;
-
-        }
+        }System.out.println(trId);
     }
 
-   /* public String getSelectedOption(){
-        List<WebElement> options = getTROptions();
-        for (WebElement option:options){
-            if (option.isSelected()){
-                return option.getText();
-            }
-        }
-        return null;
-    }*/
-/*
 
     public String staticUrl = "https://insights.hotjar.com/p?site=216793&recording=";
     public String uniqueCode = "";
-    public String finalUrl = staticUrl + uniqueCode;
-*/
+    public String finalUrl;
 
-    /*public String getFinalUrl(){
-        //Class<? extends JavascriptExecutor> s = ((JavascriptExecutor) driver).getClass();
-       String htmlText = driver.
 
-        *//*for(int codeCount = 0; codeCount < 1; codeCount++){
-            int indexOfCode = htmlText.indexOf("recordingRow-");
-            uniqueCode = htmlText.substring(indexOfCode+1, indexOfCode + 11);
+    public String getFinalUrl(){
+
+        for(int codeCount = 0; codeCount < 10; codeCount++){
+            int indexOfCode = trId.indexOf("recordingRow-");
+            uniqueCode = trId.substring(indexOfCode+1, indexOfCode + 11);
             System.out.println(uniqueCode);
-            htmlText = htmlText.substring(indexOfCode+10);
+
+            trId = trId.substring(indexOfCode+10);
+            finalUrl = staticUrl + uniqueCode;
             System.out.println(finalUrl);
-        }*//*
-        System.out.println(s);
-        return String.valueOf(s);
+        }
+        return null;
 
     }
-*/
 
 }

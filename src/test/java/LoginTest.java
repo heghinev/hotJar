@@ -23,6 +23,7 @@ public class LoginTest extends BaseTest {
     public void getUrls() {
         loginPage.loginWith("helenvanetsyan@gmail.com", "Pumpumik123!");
         loginPage.getTd();
+        loginPage.getFinalUrl();
     }
 }
 
