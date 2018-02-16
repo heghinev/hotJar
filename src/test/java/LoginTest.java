@@ -3,6 +3,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageObjects.LoginPage;
 
+import java.util.ArrayList;
+
+import static pageObjects.LoginPage.codes;
+
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,7 +27,7 @@ public class LoginTest extends BaseTest {
     public void getUrls() {
         loginPage.loginWith("helenvanetsyan@gmail.com", "Pumpumik123!");
         loginPage.getTd();
-        loginPage.getFinalUrl();
+        loginPage.printURLs(codes);
     }
 }
 
