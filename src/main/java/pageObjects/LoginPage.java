@@ -23,6 +23,8 @@ public class LoginPage extends BasePage {
     private WebElement nextLocator;
     @FindBy(css = ".title h1")
     private WebElement titleLocator;
+    @FindBy(css = "#ui-helper .close")
+    private WebElement uiHelperLocator;
 
 
 
@@ -42,10 +44,16 @@ public class LoginPage extends BasePage {
         WaitHelper.getWait().waitForElementToBeClickable(recordingsLocator);
         click(recordingsLocator);
         WaitHelper.getWait().waitForElementToBeVisible(titleLocator);
+        click(uiHelperLocator);
     }
 
 
     public List<WebElement> getTROptions(){
+        for(int nextClickCount = 0; nextClickCount < 0; nextClickCount++){
+            driver.findElements(By.className("new"));
+            WaitHelper.getWait().waitForElementToBeClickable(nextLocator);
+            click(nextLocator);
+        }
         return driver.findElements(By.className("new"));
     }
 
