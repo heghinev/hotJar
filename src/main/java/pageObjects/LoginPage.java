@@ -67,7 +67,11 @@ public class LoginPage extends BasePage {
         List<WebElement> options = getTROptions();
         for (WebElement tdOption:options){
             trId = tdOption.getAttribute("id");
-            codes.add(staticUrl + trId.replace("recordingRow-", ""));
+            if(trId != null && trId.indexOf("recordingRow-") != -1) {
+                codes.add(staticUrl + trId.replace("recordingRow-", ""));
+            }else{
+                System.out.println("No ID is found!");
+            }
         }
     }
 

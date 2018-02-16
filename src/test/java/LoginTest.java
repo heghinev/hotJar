@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void getUrls() {
-        loginPage.loginWith("", "");
+        loginPage.loginWith("helenvanetsyan@gmail.com", "Pumpumik123!");
         loginPage.getTd();
         loginPage.printURLs(codes);
     }
